@@ -115,10 +115,10 @@ $(function() {
 
         it('feed container is loaded and contains at least one entry', function() {
             // once feed has loaded, target it
-            const feed = document.querySelector('.feed');
+            const entryList = document.querySelectorAll('.entry-link');
             // each feed should contain at least one entry
             // can evaluate number of entries as children of feed
-            expect(feed.children.length > 0).toBe(true);
+            expect(entryList.length > 0).toBe(true);
         });
         
     });
