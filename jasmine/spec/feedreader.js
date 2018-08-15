@@ -26,11 +26,6 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
         it('each feed has a url property defined', function() {
             for(let feed of allFeeds) {
                 expect(feed.url).toBeDefined();
@@ -38,10 +33,6 @@ $(function() {
             }
         });
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
         it('each feed has a name property defined', function() {
             for(let feed of allFeeds) {
                 expect(feed.name).toBeDefined();
@@ -50,27 +41,15 @@ $(function() {
         });
     });
 
-
-    /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
         // refactor: body element is context for each spec in this suite
         const body = document.querySelector('body');
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
         it('is hidden by default', function() {
             // target body and test for presence of class
             expect(body.classList.contains('menu-hidden')).toBe(true);
         });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
          it('toggles on and off when menu icon is clicked', function() {
              // click event is registered on the 'menuIcon'
              // get this object and store in variable
@@ -95,16 +74,7 @@ $(function() {
          });
     });
     
-    /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
-
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
-        
         // to run tests asynchronously relative to loadFeed event, must use
         // done to check for finished status
         beforeEach(function(done) {
@@ -114,8 +84,9 @@ $(function() {
         });
 
         it('feed container is loaded and contains at least one entry', function() {
-            // once feed has loaded, target it
-            const entryList = document.querySelectorAll('.entry-link');
+            // once feed has loaded, target specifically instances of .entry-link
+            // that are nested as children of .feed element
+            const entryList = document.querySelectorAll('.feed .entry-link');
             // each feed should contain at least one entry
             // can evaluate number of entries as children of feed
             expect(entryList.length > 0).toBe(true);
@@ -123,17 +94,11 @@ $(function() {
         
     });
     
-    /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
         // feed is test context for this suite, so creating target in suite's outer scope
         const feed = document.querySelector('.feed');
         // create empty array to store entry text
         let feedOne = [];
-
-        /* TODO: Write a test that ensures when a new feed is loaded
-            * by the loadFeed function that the content actually changes.
-            * Remember, loadFeed() is asynchronous.
-            */
 
         // to run tests asynchronously relative to successive simulated loadFeed events,
         // must use done to check for finished status
